@@ -1,0 +1,169 @@
+html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+p {
+  font-family:  "Courier New",
+"Lucida Console", monospace;
+ color: white;
+}
+
+h1, h2, h3, h4, h5 {
+ color: #337ab7;
+ font-family:  "avenir", courier, monospace;
+ text-transform: uppercase;
+}
+
+a h3{
+  color: #337ab7;
+  text-shadow: 2px 2px black;
+}
+
+#black {
+  background-color: black;
+}
+
+h1, h2, h3, a {
+}
+
+.container img {
+  width: 100%;
+}
+
+div #happiness {
+  color: white;
+}
+
+#countup p {
+display: inline-block;
+padding: 5px;
+margin-top: 20px;
+font-size: 2.7em;
+line-height: 1;
+text-align: center;
+}
+
+body {
+  background-color: black !important ;
+  width:100%;
+}
+
+#time {
+  background-color: black;
+  color:white;
+}
+
+#widget {
+  background-color: grey;
+}
+
+#col-centered {
+    float: none;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.col-centered
+{
+    float: none;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.headline {
+  height: 560px;
+  margin-top:140px;
+}
+/*test*/
+.video-container {
+  height: 580px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -100;
+  height: 100%;
+}
+.video-container img {
+-webkit-filter: opacity(.7);
+filter: opacity(.5);
+}
+
+.fillWidth {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+    -webkit-filter: brightness(.3);
+    filter: brightness(.5);
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .fillWidth {
+    height: 300%;
+    top: -100%;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+ .fillWidth {
+    width: 300%;
+    left: -100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .video-container {
+    background: url('thailand-coup.jpg') center center / cover no-repeat !important;
+  }
+
+  .fillWidth {
+    display: none;
+  }
+}
+/*test*/
+
+
+
+#banner {
+  height: 900px;
+  overflow: hidden;
+}
+
+#banner img {
+  z-index: -1;
+  position:absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  min-width: 50%;
+  min-height: 50%;
+  -webkit-filter: opacity(.7);
+filter: opacity(.5);
+height:100%;
+}
+
+div #op {
+  clear:none;
+  position: relative;
+  min-height: 250px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+#oped {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -3;
+  -webkit-filter: opacity(.4);
+filter: opacity(1);
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
