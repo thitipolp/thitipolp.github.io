@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticker Redirect</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <h1>Enter Stock Ticker</h1>
+
+    <!-- Form for the factsheet URL -->
+    <form id="factsheetForm" action="" method="get">
+        <label for="factsheetTicker">Ticker for Factsheet:</label>
+        <input type="text" id="factsheetTicker" name="factsheetTicker" required autofocus>
+        <button type="submit">Go to Factsheet</button>
+    </form>
+<br><hr><br>
+    <p>Since the SET website was revamped, it has been a pain to navigate the site.</p>
+    <p>The tool simplifies the process to access factsheet for individual stocks.</p>
+
+    <script>
+        document.getElementById('factsheetForm').onsubmit = function(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+            var ticker = document.getElementById('factsheetTicker').value;
+            var baseURL = 'https://www.set.or.th/th/market/product/stock/quote/';
+            var endURL = '/factsheet';
+            var completeURL = baseURL + ticker + endURL;
+            window.open(completeURL, '_blank'); // Open the URL in a new tab
+        };
+    </script>
+</body>
+</html>
