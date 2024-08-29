@@ -16,11 +16,25 @@
         <button type="submit">Factsheet</button>
     </form>
 <br>
-    <!-- Form for the new URL -->
+    <!-- Form for the news URL -->
     <form id="profileForm" action="" method="get">
         <label for="profileTicker">Ticker:</label>
         <input type="text" id="profileTicker" name="profileTicker" required>
         <button type="submit">News</button>
+    </form>
+<br>
+    <!-- Form for Jitta factsheet URL -->
+    <form id="jittaForm" action="" method="get">
+        <label for="jittaTicker">Ticker:</label>
+        <input type="text" id="jittaTicker" name="jittaTicker" required>
+        <button type="submit">Jitta Factsheet</button>
+    </form>
+<br>
+    <!-- Form for Gapfocus URL -->
+    <form id="gapfocusForm" action="" method="get">
+        <label for="gapfocusTicker">Ticker:</label>
+        <input type="text" id="gapfocusTicker" name="gapfocusTicker" required>
+        <button type="submit">Gapfocus News</button>
     </form>
 
     <br><hr><br>
@@ -45,6 +59,25 @@
             var baseURL = 'https://www.set.or.th/th/market/product/stock/quote/';
             var endURL = '/news';
             var completeURL = baseURL + ticker + endURL;
+            window.open(completeURL, '_blank'); // Open the URL in a new tab
+        };
+
+        // Function to open the Jitta factsheet URL
+        document.getElementById('jittaForm').onsubmit = function(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+            var ticker = document.getElementById('jittaTicker').value;
+            var baseURL = 'https://www.jitta.com/stock/bkk:';
+            var endURL = '/factsheet';
+            var completeURL = baseURL + ticker + endURL;
+            window.open(completeURL, '_blank'); // Open the URL in a new tab
+        };
+
+        // Function to open the Gapfocus detail URL
+        document.getElementById('gapfocusForm').onsubmit = function(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+            var ticker = document.getElementById('gapfocusTicker').value;
+            var baseURL = 'https://stock.gapfocus.com/detail/';
+            var completeURL = baseURL + ticker;
             window.open(completeURL, '_blank'); // Open the URL in a new tab
         };
     </script>
