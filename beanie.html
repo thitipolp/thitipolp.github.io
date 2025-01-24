@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet Beanie! 🐶</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            background-color: #ffebcd;
+            color: #4a2c2a;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .profile-container {
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 90%;
+            margin: auto;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid #ff8c00;
+            object-fit: cover;
+        }
+
+        h1 {
+            color: #ff4500;
+            font-size: 24px;
+        }
+
+        .bio {
+            font-size: 16px;
+            font-style: italic;
+            margin: 10px;
+        }
+
+        .fun-facts {
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background: #ffdead;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+
+        /* Instagram Section */
+        .instagram-section {
+            margin-top: 20px;
+        }
+
+        .instagram-posts {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .post {
+            background: #fff8dc;
+            border: 1px solid #ffebcd;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            width: 90%;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .post img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .post p {
+            margin: 10px 0 0;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .profile-container {
+                max-width: 400px;
+            }
+
+            .profile-pic {
+                width: 150px;
+                height: 150px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .bio {
+                font-size: 18px;
+            }
+
+            li {
+                font-size: 16px;
+            }
+
+            .post p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <img src="beanie-profile.jpg" alt="Beanie" class="profile-pic">
+        <h1>🐾 Meet Beanie! 🐶</h1>
+        <p class="bio">Hi there! My name is Beanie. I’m an American Cocker Spaniel, 2 years and 8 months old (born on May 9, 2022). I weigh 15.8 kg. I love playing, making new friends, and having fun with my family!</p>
+
+        <div class="fun-facts">
+            <h2>Fun Facts About Me:</h2>
+            <ul>
+                <li>🎾 Favorite Toy: Squeaky ball</li>
+                <li>🍖 Favorite Snack: Chicken treats</li>
+                <li>🌳 Favorite Activity: Running at the park</li>
+                <li>💤 Favorite Nap Spot: The floor</li>
+            </ul>
+        </div>
+
+        <div class="instagram-section">
+            <h2>Follow Me on Instagram:</h2>
+            <p>Check out my latest adventures on <a href="https://www.instagram.com/beaniebadboi/" target="_blank">@beaniebadboi</a></p>
+            <div class="instagram-posts">
+                <!-- Sample Instagram Posts -->
+                <div class="post">
+                    <img src="post1.jpg" alt="Beanie with a hat">
+                    <p>Rainy day hack: My human invented a special hat to keep my ears dry... but it didn’t work! 🌧️😂</p>
+                </div>
+                <div class="post">
+                    <img src="post2.jpg" alt="Beanie playing with friends">
+                    <p>Having a blast with my new friends at the park! 🐾</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
