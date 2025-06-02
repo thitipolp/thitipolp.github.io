@@ -1,85 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ticker Redirect</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ticker Redirect</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
+
 <body>
-    <h1>Enter Stock Ticker</h1>
+  <h1>Enter Stock Ticker</h1>
 
-    <!-- Form for the factsheet URL -->
-    <form id="factsheetForm" action="" method="get">
-        <label for="factsheetTicker">Ticker:</label>
-        <input type="text" id="factsheetTicker" name="factsheetTicker" required autofocus>
-        <button type="submit">Factsheet</button>
-    </form>
-<br>
-    <!-- Form for the news URL -->
-    <form id="profileForm" action="" method="get">
-        <label for="profileTicker">Ticker:</label>
-        <input type="text" id="profileTicker" name="profileTicker" required>
-        <button type="submit">News</button>
-    </form>
-<br>
-    <!-- Form for Jitta factsheet URL -->
-    <form id="jittaForm" action="" method="get">
-        <label for="jittaTicker">Ticker:</label>
-        <input type="text" id="jittaTicker" name="jittaTicker" required>
-        <button type="submit">Jitta Factsheet</button>
-    </form>
-<br>
-    <!-- Form for Gapfocus URL -->
-    <form id="gapfocusForm" action="" method="get">
-        <label for="gapfocusTicker">Ticker:</label>
-        <input type="text" id="gapfocusTicker" name="gapfocusTicker" required>
-        <button type="submit">Gapfocus News</button>
-    </form>
+  <!-- Form for the factsheet URL -->
+  <form id="factsheetForm" action="" method="get">
+    <label for="factsheetTicker">Ticker:</label>
+    <input type="text" id="factsheetTicker" name="factsheetTicker" required autofocus>
+    <button type="submit">Factsheet</button>
+  </form>
+  <br>
+  <!-- Form for the news URL -->
+  <form id="profileForm" action="" method="get">
+    <label for="profileTicker">Ticker:</label>
+    <input type="text" id="profileTicker" name="profileTicker" required>
+    <button type="submit">SET News</button>
+  </form>
+  <br>
+  <!-- Form for Jitta factsheet URL -->
+  <form id="jittaForm" action="" method="get">
+    <label for="jittaTicker">Ticker:</label>
+    <input type="text" id="jittaTicker" name="jittaTicker" required>
+    <button type="submit">Jitta Factsheet</button>
+  </form>
+  <br>
+  <!-- Form for Gapfocus URL -->
+  <form id="gapfocusForm" action="" method="get">
+    <label for="gapfocusTicker">Ticker:</label>
+    <input type="text" id="gapfocusTicker" name="gapfocusTicker" required>
+    <button type="submit">Gapfocus News</button>
+  </form>
+  <br>
+  <!-- Form for Shareholder URL -->
+  <form id="shareholderForm" action="" method="get">
+    <label for="shareholderTicker">Ticker:</label>
+    <input type="text" id="shareholderTicker" name="shareholderTicker" required>
+    <button type="submit">AIO Shareholders</button>
+  </form>
+  <br>
+  <!-- Form for SO News URL -->
+<form id="sonewsForm" action="" method="get">
+    <label for="sonewsTicker">Ticker:</label>
+    <input type="text" id="sonewsTicker" name="sonewsTicker" required>
+    <button type="submit">AIO News</button>
+</form>
 
-    <br><hr><br>
-        <p>Since the SET website was revamped, it has been a pain to navigate the site.</p>
-        <p>The tool simplifies the process to access factsheet for individual stocks.</p>
 
-    <script>
-        // Function to open the factsheet URL
-        document.getElementById('factsheetForm').onsubmit = function(event) {
-            event.preventDefault(); // Prevent the form from submitting the traditional way
-            var ticker = document.getElementById('factsheetTicker').value;
-            var baseURL = 'https://www.set.or.th/th/market/product/stock/quote/';
-            var endURL = '/factsheet';
-            var completeURL = baseURL + ticker + endURL;
-            window.open(completeURL, '_blank'); // Open the URL in a new tab
-        };
+  <br>
+  <hr><br>
 
-        // Function to open the news URL
-        document.getElementById('profileForm').onsubmit = function(event) {
-            event.preventDefault(); // Prevent the form from submitting the traditional way
-            var ticker = document.getElementById('profileTicker').value;
-            var baseURL = 'https://www.set.or.th/th/market/product/stock/quote/';
-            var endURL = '/news';
-            var completeURL = baseURL + ticker + endURL;
-            window.open(completeURL, '_blank'); // Open the URL in a new tab
-        };
 
-        // Function to open the Jitta factsheet URL
-        document.getElementById('jittaForm').onsubmit = function(event) {
-            event.preventDefault(); // Prevent the form from submitting the traditional way
-            var ticker = document.getElementById('jittaTicker').value;
-            var baseURL = 'https://www.jitta.com/stock/bkk:';
-            var endURL = '/factsheet';
-            var completeURL = baseURL + ticker + endURL;
-            window.open(completeURL, '_blank'); // Open the URL in a new tab
-        };
+  <script>
+    // Function to open the factsheet URL
+    document.getElementById('factsheetForm').onsubmit = function(event) {
+      event.preventDefault(); // Prevent the form from submitting the traditional way
+      var ticker = document.getElementById('factsheetTicker').value;
+      var baseURL = 'https://www.set.or.th/th/market/product/stock/quote/';
+      var endURL = '/factsheet';
+      var completeURL = baseURL + ticker + endURL;
+      window.open(completeURL, '_blank'); // Open the URL in a new tab
+    };
 
-        // Function to open the Gapfocus detail URL
-        document.getElementById('gapfocusForm').onsubmit = function(event) {
-            event.preventDefault(); // Prevent the form from submitting the traditional way
-            var ticker = document.getElementById('gapfocusTicker').value;
-            var baseURL = 'https://stock.gapfocus.com/detail/';
-            var completeURL = baseURL + ticker;
-            window.open(completeURL, '_blank'); // Open the URL in a new tab
-        };
-    </script>
+    // Function to open the news URL
+    document.getElementById('profileForm').onsubmit = function(event) {
+      event.preventDefault(); // Prevent the form from submitting the traditional way
+      var ticker = document.getElementById('profileTicker').value;
+      var baseURL = 'https://www.set.or.th/th/market/product/stock/quote/';
+      var endURL = '/news';
+      var completeURL = baseURL + ticker + endURL;
+      window.open(completeURL, '_blank'); // Open the URL in a new tab
+    };
+
+    // Function to open the Jitta factsheet URL
+    document.getElementById('jittaForm').onsubmit = function(event) {
+      event.preventDefault(); // Prevent the form from submitting the traditional way
+      var ticker = document.getElementById('jittaTicker').value;
+      var baseURL = 'https://www.jitta.com/stock/bkk:';
+      var endURL = '/factsheet';
+      var completeURL = baseURL + ticker + endURL;
+      window.open(completeURL, '_blank'); // Open the URL in a new tab
+    };
+
+    // Function to open the Gapfocus detail URL
+    document.getElementById('gapfocusForm').onsubmit = function(event) {
+      event.preventDefault(); // Prevent the form from submitting the traditional way
+      var ticker = document.getElementById('gapfocusTicker').value;
+      var baseURL = 'https://stock.gapfocus.com/detail/';
+      var completeURL = baseURL + ticker;
+      window.open(completeURL, '_blank'); // Open the URL in a new tab
+    };
+
+    // Function to open the Shareholder info URL
+    document.getElementById('shareholderForm').onsubmit = function(event) {
+      event.preventDefault(); // Prevent traditional form submission
+      var ticker = document.getElementById('shareholderTicker').value.toUpperCase(); // ensure uppercase
+      var baseURL = 'https://aio.panphol.com/stock/';
+      var endURL = '/sholder';
+      var completeURL = baseURL + ticker + endURL;
+      window.open(completeURL, '_blank'); // Open the URL in a new tab
+    };
+
+    // Function to open the SO News URL
+document.getElementById('sonewsForm').onsubmit = function(event) {
+    event.preventDefault(); // Prevent traditional form submission
+    var ticker = document.getElementById('sonewsTicker').value.toUpperCase(); // normalize input
+    var baseURL = 'https://aio.panphol.com/stock/';
+    var endURL = '/sonews';
+    var completeURL = baseURL + ticker + endURL;
+    window.open(completeURL, '_blank'); // Open the URL in a new tab
+};
+
+  </script>
 </body>
+
 </html>
