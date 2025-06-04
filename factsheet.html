@@ -10,53 +10,71 @@
 
 <body>
   <h1>Enter Stock Ticker</h1>
-
   <!-- Form for the factsheet URL -->
-  <form id="factsheetForm" action="" method="get">
-    <label for="factsheetTicker">Ticker:</label>
-    <input type="text" id="factsheetTicker" name="factsheetTicker" required autofocus>
-    <button type="submit">Factsheet</button>
-  </form>
+  <fieldset class="panphol-group" style="background-color:#FFD580;max-width:500px">
+    <legend>SET Tools</legend>
+    <form id="factsheetForm" action="" method="get">
+      <label for="factsheetTicker">Ticker:</label>
+      <input type="text" id="factsheetTicker" name="factsheetTicker" required autofocus>
+      <button type="submit">Factsheet</button>
+    </form>
+    <br>
+    <!-- Form for the news URL -->
+    <form id="profileForm" action="" method="get">
+      <label for="profileTicker">Ticker:</label>
+      <input type="text" id="profileTicker" name="profileTicker" required>
+      <button type="submit">SET News</button>
+    </form>
+  </fieldset>
   <br>
-  <!-- Form for the news URL -->
-  <form id="profileForm" action="" method="get">
-    <label for="profileTicker">Ticker:</label>
-    <input type="text" id="profileTicker" name="profileTicker" required>
-    <button type="submit">SET News</button>
-  </form>
+  <fieldset class="panphol-group" style="max-width:500px">
+    <!-- Form for Jitta factsheet URL -->
+    <form id="jittaForm" action="" method="get">
+      <label for="jittaTicker">Ticker:</label>
+      <input type="text" id="jittaTicker" name="jittaTicker" required>
+      <button type="submit">Jitta Factsheet</button>
+    </form>
+
+    <br>
+    <!-- Form for Gapfocus URL -->
+    <form id="gapfocusForm" action="" method="get">
+      <label for="gapfocusTicker">Ticker:</label>
+      <input type="text" id="gapfocusTicker" name="gapfocusTicker" required>
+      <button type="submit">Gapfocus News</button>
+    </form>
+  </fieldset>
   <br>
-  <!-- Form for Jitta factsheet URL -->
-  <form id="jittaForm" action="" method="get">
-    <label for="jittaTicker">Ticker:</label>
-    <input type="text" id="jittaTicker" name="jittaTicker" required>
-    <button type="submit">Jitta Factsheet</button>
+  <fieldset class="panphol-group" style="background-color:cyan;max-width:500px">
+    <legend>AIO Tools</legend>
+
+    <!-- Form for Shareholder URL -->
+    <form id="shareholderForm" action="" method="get">
+      <label for="shareholderTicker">Ticker:</label>
+      <input type="text" id="shareholderTicker" name="shareholderTicker" required>
+      <button type="submit">Shareholders</button>
+    </form>
+    <br>
+
+    <!-- Form for SO News URL -->
+    <form id="sonewsForm" action="" method="get">
+      <label for="sonewsTicker">Ticker:</label>
+      <input type="text" id="sonewsTicker" name="sonewsTicker" required>
+      <button type="submit">SO News</button>
+    </form>
+  </fieldset>
+    <br>
+  <fieldset class="panphol-group" style="max-width:500px">
+
+  <form id="masterForm" action="" method="get">
+    <label for="masterTicker">Ticker:</label>
+    <input type="text" id="masterTicker" name="masterTicker" required>
+    <button type="submit">APPLY TO ALL</button>
   </form>
-  <br>
-  <!-- Form for Gapfocus URL -->
-  <form id="gapfocusForm" action="" method="get">
-    <label for="gapfocusTicker">Ticker:</label>
-    <input type="text" id="gapfocusTicker" name="gapfocusTicker" required>
-    <button type="submit">Gapfocus News</button>
-  </form>
-  <br>
-  <!-- Form for Shareholder URL -->
-  <form id="shareholderForm" action="" method="get">
-    <label for="shareholderTicker">Ticker:</label>
-    <input type="text" id="shareholderTicker" name="shareholderTicker" required>
-    <button type="submit">AIO Shareholders</button>
-  </form>
-  <br>
-  <!-- Form for SO News URL -->
-<form id="sonewsForm" action="" method="get">
-    <label for="sonewsTicker">Ticker:</label>
-    <input type="text" id="sonewsTicker" name="sonewsTicker" required>
-    <button type="submit">AIO News</button>
-</form>
+    </fieldset>
 
 
-  <br>
+<br>
   <hr><br>
-
 
   <script>
     // Function to open the factsheet URL
@@ -109,16 +127,30 @@
     };
 
     // Function to open the SO News URL
-document.getElementById('sonewsForm').onsubmit = function(event) {
-    event.preventDefault(); // Prevent traditional form submission
-    var ticker = document.getElementById('sonewsTicker').value.toUpperCase(); // normalize input
-    var baseURL = 'https://aio.panphol.com/stock/';
-    var endURL = '/sonews';
-    var completeURL = baseURL + ticker + endURL;
-    window.open(completeURL, '_blank'); // Open the URL in a new tab
-};
+    document.getElementById('sonewsForm').onsubmit = function(event) {
+      event.preventDefault(); // Prevent traditional form submission
+      var ticker = document.getElementById('sonewsTicker').value.toUpperCase(); // normalize input
+      var baseURL = 'https://aio.panphol.com/stock/';
+      var endURL = '/sonews';
+      var completeURL = baseURL + ticker + endURL;
+      window.open(completeURL, '_blank'); // Open the URL in a new tab
+    };
 
+    // Master form populates all fields
+    document.getElementById('masterForm').onsubmit = function(event) {
+      event.preventDefault();
+      const ticker = document.getElementById('masterTicker').value.trim().toUpperCase();
+
+      // Set values of all other input fields
+      document.getElementById('factsheetTicker').value = ticker;
+      document.getElementById('profileTicker').value = ticker;
+      document.getElementById('jittaTicker').value = ticker;
+      document.getElementById('gapfocusTicker').value = ticker;
+      document.getElementById('shareholderTicker').value = ticker;
+      document.getElementById('sonewsTicker').value = ticker;
+    };
   </script>
+
 </body>
 
 </html>
