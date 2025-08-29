@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบเบิกวัสดุสิ้นเปลือง 3</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap');
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f4f7f6;
+            margin: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-bottom: 1em;
+        }
+        form table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        thead th {
+            background-color: #34495e;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .category-header td {
+            background-color: #ecf0f1;
+            font-weight: bold;
+            color: #2c3e50;
+            text-align: center;
+        }
+        input[type="number"] {
+            width: 80px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 1em;
+            font-family: 'Sarabun', sans-serif;
+        }
+        /* Hide number input spinners for a cleaner look */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none;
+            margin: 0; 
+        }
+        input[type=number] { -moz-appearance: textfield; }
+        .submit-container {
+            text-align: right;
+        }
+        button {
+            padding: 12px 25px;
+            border: none;
+            background-color: #27ae60;
+            color: white;
+            font-size: 1.1em;
+            font-family: 'Sarabun', sans-serif;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:disabled {
+             background-color: #ccc;
+             cursor: not-allowed;
+        }
+        button:hover:not(:disabled) {
+            background-color: #229954;
+        }
+        #status {
+             text-align: center; margin-top: 1em; font-weight: bold; 
+        }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>ใบเบิกวัสดุสิ้นเปลือง 3</h1>
+
+        <form id="requisition-form">
+            <table>
+                <thead>
+                    <tr>
+                        <th>หมวด</th>
+                        <th>SKU</th>
+                        <th>รายการ</th>
+                        <th>จำนวน</th>
+                        <th>หน่วย</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="item-row">
+                        <td>กาวร้อน 105</td>
+                        <td>DC105FG001</td>
+                        <td>กาวร้อนไดโก้ 105 บรรจุ 20 กรัม</td>
+                        <td><input type="number" min="0" placeholder="0"></td>
+                        <td>ชิ้น</td>
+                    </tr>
+                    <tr class="item-row">
+                        <td>กาวร้อน 105</td>
+                        <td>DC105BAG001</td>
+                        <td>กาวร้อนไดโก้ 105 (กล่อง 1 ชิ้น)</td>
+                        <td><input type="number" min="0" placeholder="0"></td>
+                        <td>ใบ</td>
+                    </tr>
+                    <tr class="item-row">
+                        <td>กาวร้อน 105</td>
+                        <td>DC105BOX024BA</td>
+                        <td>กล่องสั่งกาวร้อน 105 รุ่นถุงโซ่ บรรจุ 24 โหล</td>
+                        <td><input type="number" min="0" placeholder="0"></td>
+                        <td>ใบ</td>
+                    </tr>
+                    <tr class="item-row">
+                        <td>กาวร้อน 105</td>
+                        <td>HGBAG012</td>
+                        <td>ถุงใส่บรรจุกาวร้อนรุ่นถุงโซ่ 12 ชิ้น ขนาด 9 x 12</td>
+                        <td><input type="number" min="0" placeholder="0"></td>
+                        <td>กก.</td>
+                    </tr>
+                     <tr class="item-row">
+                        <td>กาวร้อน 105</td>
+                        <td>HGRAWPlastic</td>
+                        <td>ดินกันซึม (ถุงขุ่น)</td>
+                        <td><input type="number" min="0" placeholder="0"></td>
+                        <td>ชิ้น</td>
+                    </tr>
+
+                    <tr class="category-header"><td colspan="5">กาวร้อน 503</td></tr>
+                    <tr class="item-row">
+                        <td>กาวร้อน 503</td>
+                        <td>DC503BOX</td>
+                        <td>ถุงโซ่กาวร้อน 503</td>
+                        <td><input type="number" min="0" placeholder="0"></td>
+                        <td>ใบ</td>
+                    </tr>
+                    <tr class="item-row">
+                        <td>กาวร้อน 503</td>
+                        <td>DC503BOX</td>
+                        <td>กล่อง 24 โหล กาวร้อน 503</td>
+                        <td><input type="number" min="0" placeholder="0"></td>
+                        <td>ใบ</td>
+                    </tr>
+                    
+                    <tr class="category-header"><td colspan="5">กาวข้างไดโก้ เพาเวอร์</td></tr>
+                    <tr class="item-row">
+                        <td>กาวข้างไดโก้ เพาเวอร์</td>
+                        <td>DCPOWBAG</td>
+                        <td>ซองกาวข้างไดโก้ เพาเวอร์</td>
+                        <td><input type="number" min="0" placeholder="0"></td>
+                        <td>ม้วน</td>
+                    </tr>
+                    <tr class="item-row">
+                        <td>กาวข้างไดโก้ เพาเวอร์</td>
+                        <td>DCPOWBOX</td>
+                        <td>กล่องกาวข้างไดโก้ เพาเวอร์</td>
+                        <td><input type="number" min="0" placeholder="0"></td>
+                        <td>ใบ</td>
+                    </tr>
+
+                    <tr class="category-header"><td colspan="5">Glitter ด้ามเหลือง</td></tr>
+                     <tr class="item-row">
+                        <td>Glitter ด้ามเหลือง</td>
+                        <td>GTPP012</td>
+                        <td>แผงมีดโกน P12</td>
+                        <td><input type="number" min="0" placeholder="0"></td>
+                        <td>ชิ้น</td>
+                    </tr>
+                    <tr class="item-row">
+                        <td>Glitter ด้ามเหลือง</td>
+                        <td>GTPP024</td>
+                        <td>แผงมีดโกน P24 (หลอดละ 400 ชิ้น)</td>
+                        <td><input type="number" min="0" placeholder="0"></td>
+                        <td>ชิ้น</td>
+                    </tr>
+                    <tr class="item-row">
+                        <td>Glitter ด้ามเหลือง</td>
+                        <td>GTBAG002</td>
+                        <td>ซองมีดโกนหนวด P2</td>
+                        <td><input type="number" min="0" placeholder="0"></td>
+                        <td>ชิ้น</td>
+                    </tr>
+                    </tbody>
+            </table>
+            <div class="submit-container">
+                <button type="submit">ส่งใบเบิก</button>
+            </div>
+        </form>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('requisition-form');
+        const statusDiv = document.getElementById('status');
+        const submitButton = form.querySelector('button');
+
+        // IMPORTANT: Paste your Google Apps Script URL here
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyNuHc42lpK-s9L7kFWV6gAJiqiIUcH4RyKcYUr9usNFxbtKB36aarzsdAREhkFqs9MVA/exechttps://script.google.com/macros/s/AKfycbwxuF5yhs0FBFnNXIQhaaPMWM9HesdJubbG0CvNN18EKJztOvBQzwQAAGntJiw335ozUg/exec'; 
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            statusDiv.textContent = 'กำลังส่งข้อมูล...';
+            statusDiv.className = '';
+            submitButton.disabled = true;
+
+            const itemsToSubmit = [];
+            const itemRows = form.querySelectorAll('tbody .item-row');
+
+            itemRows.forEach(row => {
+                const quantityInput = row.querySelector('input[type="number"]');
+                const quantity = parseInt(quantityInput.value, 10) || 0;
+
+                // Only add the item if a quantity greater than 0 is entered
+                if (quantity > 0) {
+                    const cells = row.getElementsByTagName('td');
+                    const itemData = {
+                        category: cells[0].textContent.trim(),
+                        sku: cells[1].textContent.trim(),
+                        description: cells[2].textContent.trim(),
+                        quantity: quantity,
+                        unit: cells[4].textContent.trim()
+                    };
+                    itemsToSubmit.push(itemData);
+                }
+            });
+
+            if (itemsToSubmit.length === 0) {
+                statusDiv.textContent = 'กรุณาใส่จำนวนอย่างน้อย 1 รายการ';
+                statusDiv.className = 'error';
+                submitButton.disabled = false;
+                return;
+            }
+
+            // Send the collected data to Google Apps Script
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ items: itemsToSubmit })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result === 'success') {
+                    statusDiv.textContent = 'ส่งใบเบิกเรียบร้อยแล้ว!';
+                    statusDiv.className = 'success';
+                    form.reset();
+                } else {
+                    throw new Error(data.error || 'เกิดข้อผิดพลาดไม่ทราบสาเหตุ');
+                }
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                statusDiv.textContent = 'เกิดข้อผิดพลาด! กรุณาลองใหม่อีกครั้ง';
+                statusDiv.className = 'error';
+            })
+            .finally(() => {
+                submitButton.disabled = false;
+            });
+        });
+    </script>
+
+</body>
+</html>
