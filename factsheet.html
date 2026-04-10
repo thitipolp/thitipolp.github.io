@@ -66,6 +66,17 @@
   </fieldset>
     <br>
         <br>
+  <fieldset class="panphol-group" style="background-color:#E6F3FF;max-width:500px">
+    <legend><strong>Thai Government Tools</strong></legend>
+    <!-- Form for Company Tax ID -->
+    <form id="taxIdForm" action="" method="get">
+      <label for="companyTaxId">Company Tax ID:</label>
+      <input type="text" id="companyTaxId" name="companyTaxId" required>
+      <button type="submit">DBD Company Profile</button>
+    </form>
+  </fieldset>
+    <br>
+        <br>
   <fieldset class="panphol-group" style="max-width:500px">
 
   <form id="masterForm" action="" method="get">
@@ -139,6 +150,15 @@
       window.open(completeURL, '_blank'); // Open the URL in a new tab
     };
 
+    // Function to open the Company Tax ID URL
+    document.getElementById('taxIdForm').onsubmit = function(event) {
+      event.preventDefault(); // Prevent traditional form submission
+      var taxId = document.getElementById('companyTaxId').value;
+      var baseURL = 'https://datawarehouse.dbd.go.th/company/profile/5';
+      var completeURL = baseURL + taxId;
+      window.open(completeURL, '_blank'); // Open the URL in a new tab
+    };
+
     // Master form populates all fields
     document.getElementById('masterForm').onsubmit = function(event) {
       event.preventDefault();
@@ -151,6 +171,7 @@
       document.getElementById('gapfocusTicker').value = ticker;
       document.getElementById('shareholderTicker').value = ticker;
       document.getElementById('sonewsTicker').value = ticker;
+      document.getElementById('companyTaxId').value = ticker;
     };
   </script>
 
