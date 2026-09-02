@@ -77,6 +77,23 @@
   </fieldset>
     <br>
         <br>
+
+  <!-- ===== BAHTTEXT converter (live, no button needed) ===== -->
+  <fieldset class="panphol-group" style="background-color:#E8F5E9;max-width:500px">
+    <legend><strong>BahtText</strong></legend>
+    <form id="bahtTextForm" action="" method="get">
+      <label for="bahtAmount">Amount:</label>
+      <input type="text" id="bahtAmount" name="bahtAmount" inputmode="decimal"
+             placeholder="1234.56" autocomplete="off" style="width:180px">
+      <button type="submit">Copy</button>
+      <div id="bahtAmountFormatted" style="margin-top:6px;color:#555;font-size:0.9em"></div>
+      <div id="bahtTextOutput"
+           style="margin-top:4px;padding:6px;min-height:1.4em;background:#fff;border:1px solid #bbb;cursor:pointer"
+           title="Click to copy"></div>
+    </form>
+  </fieldset>
+  <br>
+        <br>
   <fieldset class="panphol-group" style="max-width:500px">
 
   <form id="masterForm" action="" method="get">
@@ -158,6 +175,96 @@
       var completeURL = baseURL + taxId;
       window.open(completeURL, '_blank'); // Open the URL in a new tab
     };
+
+    // ===== BAHTTEXT =====
+    var THAI_DIGITS = ['ศูนย์', 'หนึ่ง', 'สอง', 'สาม', 'สี่', 'ห้า', 'หก', 'เจ็ด', 'แปด', 'เก้า'];
+    var THAI_PLACES = ['', 'สิบ', 'ร้อย', 'พัน', 'หมื่น', 'แสน'];
+
+    // Reads a group of up to 6 digits. hasPrefix = something was already read
+    // before this group (so a trailing 1 becomes "เอ็ด").
+    function readChunk(digits, hasPrefix) {
+      var out = '';
+      for (var i = 0; i < digits.length; i++) {
+        var d = +digits[i];
+        var pos = digits.length - i - 1; // 0 = units place
+        if (d === 0) continue;
+        if (pos === 0) {
+          out += (d === 1 && (digits.length > 1 || hasPrefix)) ? 'เอ็ด' : THAI_DIGITS[d];
+        } else if (pos === 1) {
+          out += (d === 1) ? 'สิบ' : (d === 2) ? 'ยี่สิบ' : THAI_DIGITS[d] + 'สิบ';
+        } else {
+          out += THAI_DIGITS[d] + THAI_PLACES[pos];
+        }
+      }
+      return out;
+    }
+
+    // Reads an arbitrarily long integer string, splitting on ล้าน every 6 digits.
+    function readInteger(str, hasPrefix) {
+      str = str.replace(/^0+/, '');
+      if (!str) return '';
+      if (str.length > 6) {
+        var head = str.slice(0, str.length - 6);
+        var tail = str.slice(-6);
+        return readInteger(head, hasPrefix) + 'ล้าน' + readInteger(tail, true);
+      }
+      return readChunk(str, hasPrefix);
+    }
+
+    function bahtText(value) {
+      var cleaned = String(value).replace(/[,\s฿]/g, '');
+      if (cleaned === '' || !/^-?\d*\.?\d*$/.test(cleaned) || cleaned === '-' || cleaned === '.') return '';
+      var num = parseFloat(cleaned);
+      if (isNaN(num)) return '';
+
+      var negative = num < 0;
+      var total = Math.round((Math.abs(num) + Number.EPSILON) * 100); // total satang
+      var baht = Math.floor(total / 100);
+      var satang = total % 100;
+
+      var text;
+      if (baht === 0 && satang === 0) {
+        text = 'ศูนย์บาทถ้วน';
+      } else if (baht === 0) {
+        text = readInteger(String(satang), false) + 'สตางค์';
+      } else if (satang === 0) {
+        text = readInteger(String(baht), false) + 'บาทถ้วน';
+      } else {
+        text = readInteger(String(baht), false) + 'บาท' + readInteger(String(satang), false) + 'สตางค์';
+      }
+      return (negative ? 'ลบ' : '') + text;
+    }
+
+    (function() {
+      var input = document.getElementById('bahtAmount');
+      var output = document.getElementById('bahtTextOutput');
+      var formatted = document.getElementById('bahtAmountFormatted');
+
+      function render() {
+        var cleaned = input.value.replace(/[,\s฿]/g, '');
+        var num = parseFloat(cleaned);
+        formatted.textContent = isNaN(num) ? '' :
+          num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' บาท';
+        output.textContent = bahtText(input.value);
+      }
+
+      function copy() {
+        if (!output.textContent) return;
+        navigator.clipboard.writeText(output.textContent).then(function() {
+          var previous = output.style.backgroundColor;
+          output.style.backgroundColor = '#C8E6C9';
+          setTimeout(function() { output.style.backgroundColor = previous || '#fff'; }, 400);
+        });
+      }
+
+      input.addEventListener('input', render);          // live, no button
+      output.addEventListener('click', copy);           // click the result to copy
+      document.getElementById('bahtTextForm').onsubmit = function(event) {
+        event.preventDefault();
+        copy();                                         // Enter also copies
+      };
+      render();
+    })();
 
     // Master form populates all fields
     document.getElementById('masterForm').onsubmit = function(event) {
