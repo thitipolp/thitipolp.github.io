@@ -10,6 +10,7 @@
 
 <body>
   <h1>Enter Stock Ticker <a href="/counter.html"><button>counter</button></a></h1>
+
   <!-- Form for the factsheet URL -->
     <legend><strong>SET Tools</strong></legend>
   <fieldset class="panphol-group" style="background-color:#FFD580;max-width:500px">
@@ -107,6 +108,13 @@
 <br>
   <hr><br>
 
+  <!-- ===== Count-up timer ===== -->
+  <fieldset class="panphol-group" style="background-color:#F3E5F5;max-width:500px">
+    <div id="countUp" style="font-size:1.4em;font-weight:bold">&nbsp;</div>
+    <div id="countUpSince" style="color:#555;font-size:0.85em;margin-top:4px"></div>
+  </fieldset>
+  <br>
+
   <script>
     // Function to open the factsheet URL
     document.getElementById('factsheetForm').onsubmit = function(event) {
@@ -175,6 +183,65 @@
       var completeURL = baseURL + taxId;
       window.open(completeURL, '_blank'); // Open the URL in a new tab
     };
+
+    // ===== COUNT-UP TIMER =====
+    (function() {
+      // Year, month (0 = January), day, hour, minute
+      var START = new Date(2026, 8, 11, 9, 0, 0);
+
+      var display = document.getElementById('countUp');
+      var since = document.getElementById('countUpSince');
+
+      // Adds n calendar months, clamping to the last valid day (e.g. Jan 31 + 1 = Feb 28)
+      function addMonths(date, n) {
+        var d = new Date(date.getTime());
+        var day = d.getDate();
+        d.setDate(1);
+        d.setMonth(d.getMonth() + n);
+        var lastDay = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+        d.setDate(Math.min(day, lastDay));
+        return d;
+      }
+
+      function plural(n, word) {
+        return n + ' ' + word + (n === 1 ? '' : 's');
+      }
+
+      function render() {
+        var now = new Date();
+
+        if (now < START) {
+          display.textContent = 'Not started yet';
+          since.textContent = 'Counting from ' + START.toLocaleString();
+          return;
+        }
+
+        // Whole calendar months first, then the remainder in days/hours/minutes
+        var months = (now.getFullYear() - START.getFullYear()) * 12 +
+                     (now.getMonth() - START.getMonth());
+        var anchor = addMonths(START, months);
+        if (anchor > now) {
+          months -= 1;
+          anchor = addMonths(START, months);
+        }
+
+        var ms = now - anchor;
+        var days = Math.floor(ms / 86400000);
+        ms -= days * 86400000;
+        var hours = Math.floor(ms / 3600000);
+        ms -= hours * 3600000;
+        var minutes = Math.floor(ms / 60000);
+
+        display.textContent = plural(months, 'month') + ', ' +
+                              plural(days, 'day') + ', ' +
+                              plural(hours, 'hour') + ', ' +
+                              plural(minutes, 'minute');
+        since.textContent = 'Since ' + START.toLocaleString();
+      }
+
+      render();
+      setInterval(render, 1000);
+    })();
 
     // ===== BAHTTEXT =====
     var THAI_DIGITS = ['ศูนย์', 'หนึ่ง', 'สอง', 'สาม', 'สี่', 'ห้า', 'หก', 'เจ็ด', 'แปด', 'เก้า'];
